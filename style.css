@@ -1,0 +1,272 @@
+/* Global CSS */
+body{
+	background: url(https://wallpapercave.com/wp/9DpMPlS.jpg) no-repeat center center fixed;
+	background-size: cover;
+}
+
+@font-face {
+	font-family: Belwe;
+	src: url('assets/fonts/Belwe-Bold.ttf')
+}
+
+.wrapper{
+	display: grid;
+	grid-gap: 5px;
+	grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 10vh 80vh 10vh;
+}
+
+.header {
+	grid-column: span 12;
+	margin-top: 1vh;
+	margin-left: 1vh;
+}
+
+.header img {
+	height: 10vh
+}
+.stats_menu {
+	grid-column: span 3;
+	text-align: center;
+	/* border: 10px solid rgba(168, 35, 35, 0.664);
+	background-color: rgba(243, 227, 227, 0.801);
+	color: rgb(168, 35, 35); */
+	color: rgb(255, 255, 255);
+	font-size: 2em;
+	font-family: 'Belwe';
+	text-shadow:2px 2px 2px #502503;
+	font-weight: 700;
+}
+
+.stats_menu div {
+	margin: 9vh;
+}
+
+#gameArea {
+	grid-column: span 9;
+	display: grid;
+	grid-gap: 1px;
+	grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+.footer {
+	grid-column: span 12;
+}
+
+.card {
+	position: relative;
+	transition: 1s; 
+	transform-style: preserve-3d;
+}
+
+.back{
+	position: absolute;
+	min-width: 100%;
+	min-height: 100%;
+	background-repeat: no-repeat;
+}
+
+.front{
+	position: absolute;
+	min-width: 100%;
+	min-height: 100%;
+	background-repeat: no-repeat;
+}
+
+.card img {
+	height: 25vh;
+	
+}
+
+.reveal{
+	transform: rotateY(360deg);
+	
+}
+
+.matched .front {
+	opacity: 0.7;
+}
+
+.reveal .back {
+	display: none;
+}
+
+.matched .back {
+	display: none;
+}
+
+.title {
+	text-align: center;
+}
+
+.fa {
+    bottom: 0;
+    left: 0;
+    font-size: 5em !important;
+    color: black;
+    position: absolute;
+}
+
+
+/* ----------- iPhone models 6 & up // Portrait Mode----------- */
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) { 
+	.wrapper{
+		grid-template-rows: 5vh 15vh 80vh 0vh;
+	}
+	.header {
+		grid-column: span 12;
+		
+	}
+	.stats_menu {
+		margin-top: 10vh;
+		grid-column: span 12;		
+	}
+	.stats_menu div {
+		display: inline-block;
+		margin: 3vh;
+		font-size: 2vh;
+	}
+	#gameArea {
+		grid-column: span 12;
+		display: grid;
+		margin-top: 10vh;
+	}
+	.footer{
+		grid-column: span 0;
+	}
+	.card img {
+		height: 13vh;
+	}
+}
+
+
+/* ----------- iPhone X Portrait Mode----------- */
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) { 
+	.card img {
+		height: 11vh;
+	}
+}
+
+/* ----------- iPad Portrait Mode----------- */
+@media only screen 
+and (min-device-width: 768px) 
+and (max-device-width: 1024px) 
+and (orientation: portrait) 
+and (-webkit-min-device-pixel-ratio: 1) {
+	.wrapper{
+		grid-template-rows: 5vh 15vh 80vh 0vh;
+	}
+	.header {
+		grid-column: span 12;
+		
+	}
+	.stats_menu {
+		margin-top: 10vh;
+		grid-column: span 12;		
+	}
+	.stats_menu div {
+		display: inline-block;
+		margin: 3vh;
+		font-size: 2vh;
+	}
+	#gameArea {
+		grid-column: span 12;
+		display: grid;
+		margin-top: 10vh;
+	}
+	.footer{
+		grid-column: span 0;
+	}
+	.card img {
+		height: 13vh;
+	}
+}
+
+
+/* ----------- Galaxy Nexus Series ----------- */
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 4) and (orientation: portrait) {
+	.wrapper{
+		grid-template-rows: 5vh 15vh 80vh 0vh;
+	}
+	.header {
+		grid-column: span 12;
+		
+	}
+	.stats_menu {
+		margin-top: 10vh;
+		grid-column: span 12;		
+	}
+	.stats_menu div {
+		display: inline-block;
+		margin: 3vh;
+	}
+	#gameArea {
+		grid-column: span 12;
+		display: grid;
+		margin-top: 10vh;
+	}
+	.footer{
+		grid-column: span 0;
+	}
+	.card img {
+		height: 13vh;
+	}
+}
+
+
+/* ----------- Galaxy S series Portrait Mode ----------- */
+
+@media only screen and (min-device-width: 360px) and (orientation: portrait) {
+	.wrapper{
+		grid-template-rows: 5vh 15vh 80vh 0vh;
+	}
+	.header {
+		grid-column: span 12;
+		
+	}
+	.stats_menu {
+		margin-top: 10vh;
+		grid-column: span 12;		
+	}
+	.stats_menu div {
+		display: inline-block;
+		margin: 3vh;
+		font-size: 2vh;
+	}
+	#gameArea {
+		grid-column: span 12;
+		display: grid;
+		margin-top: 10vh;
+	}
+	.footer{
+		grid-column: span 0;
+	}
+	.card img {
+		height: 13vh;
+	}
+}
+
+
+
+
+
+
+/* ******************
+ @media only screen and (width: 1100px) {
+	.wrapper{
+		grid-template-rows: 15vh 80vh 15vh;
+	}
+	.header {
+		grid-column: span 6;
+	}
+	.stats_menu {
+		grid-column: span 6;
+	}
+	#gameArea {
+		grid-column: span 12;
+	}
+	.card img {
+		height: 13vh;
+	}
+ } */
