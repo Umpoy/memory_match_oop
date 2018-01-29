@@ -18,7 +18,7 @@ function Card(frontImage, parentObject) {
 		});
 		var img = $('<img>').attr('src', frontImage);
 		front.append(img);
-		back.append($('<img>').attr('src', 'images/card-back.jpg'))
+		back.append($('<img>').attr('src', 'assets/images/card-back.jpg'))
 		card.append(front, back);
 		this.renderElement = card;
 		return card;

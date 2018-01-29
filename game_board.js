@@ -7,15 +7,15 @@ function Game() {
     this.accuracy = null;
     this.times_clicked = 0;
     this.imageList = [
-        'images/dark.jpg',
-        'images/head.jpg',
-        'images/leftarm.jpg',
-        'images/leftleg.jpg',
-        'images/obelisk.jpg',
-        'images/rightarm.jpg',
-        'images/rightleg.jpg',
-        'images/slifer.jpg',
-        'images/wingra.jpg',
+        'assets/images/dark.jpg',
+        'assets/images/head.jpg',
+        'assets/images/leftarm.jpg',
+        'assets/images/leftleg.jpg',
+        'assets/images/obelisk.jpg',
+        'assets/images/rightarm.jpg',
+        'assets/images/rightleg.jpg',
+        'assets/images/slifer.jpg',
+        'assets/images/wingra.jpg',
     ];
     this.clickCardsList = [];
     this.testArray = []
