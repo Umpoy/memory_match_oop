@@ -17,52 +17,56 @@ function Game() {
         'assets/images/slifer.jpg',
         'assets/images/wingra.jpg',
     ];
+    this.sounds = {
+        card_flip: new Audio("assets/sounds/card-flip.mp3"),
+        damage: new Audio("assets/sounds/damage.mp3")
+    }
     this.clickCardsList = [];
-    this.testArray = []
-    this.initializeGame = function () {
-        $('.card').remove()
-        console.log(this)
-        this.life_points = 8000;
-        this.times_played += 1;
-        $('.life_points').html(this.life_points);
-        $('.times_played').html(this.times_played)
-        var images = this.imageList.concat(this.imageList);
-        var randomizedArray = [];
-        while (images.length !== 0) {
-            var randomIndex = Math.floor(Math.random() * images.length);
-            randomizedArray.push(images[randomIndex]);
-            images.splice(randomIndex, 1);
-        }
-        this.createCards(randomizedArray);
-    }
+    // this.initializeGame = function () {
+    //     $('.card').remove()
+    //     console.log(this)
+    //     this.life_points = 8000;
+    //     this.times_played += 1;
+    //     $('.life_points').html(this.life_points);
+    //     $('.times_played').html(this.times_played)
+    //     var images = this.imageList.concat(this.imageList);
+    //     var randomizedArray = [];
+    //     while (images.length !== 0) {
+    //         var randomIndex = Math.floor(Math.random() * images.length);
+    //         randomizedArray.push(images[randomIndex]);
+    //         images.splice(randomIndex, 1);
+    //     }
+    //     this.createCards(randomizedArray);
+    // }
 
-    this.createCards = function (randomizedArray) {
-        var cardList = [];
-        for (var i = 0; i < randomizedArray.length; i++) {
-            var newCard = new Card(randomizedArray[i], this);
-            var cardDomElement = newCard.render();
-            $('#gameArea').append(cardDomElement)
-            cardList.push(newCard)
-        }
+    // this.createCards = function (randomizedArray) {
+    //     var cardList = [];
+    //     for (var i = 0; i < randomizedArray.length; i++) {
+    //         var newCard = new Card(randomizedArray[i], this);
+    //         var cardDomElement = newCard.render();
+    //         $('#gameArea').append(cardDomElement)
+    //         cardList.push(newCard)
+    //     }
 
-        setTimeout(function () {
-            $('.card').addClass('reveal')
-            setTimeout(function () {
-                $('.card').removeClass('reveal')
-            }, 2000)
-        }, 1000)
-        $('.card').on('click', this.handleCardClick)
-    }
+    //     setTimeout(function () {
+    //         $('.card').addClass('reveal')
+    //         setTimeout(function () {
+    //             $('.card').removeClass('reveal')
+    //         }, 2000);
+    //         setTimeout(function () {
+    //             $('.card').on('click', self.handleCardClick);
+    //         }, 0)
+    //     }, 1000)
+
+    // }
 
     this.reveal = function (card_info) {
         $(card_info).addClass('reveal')
         var image_url = $(card_info).find('img').attr('src');
-        console.log(image_url)
         var card_click = new Card(image_url, card_info)
         this.clickCardsList.push(card_click)
         if (this.clickCardsList.length == 2) {
             this.check()
-
         }
     }
 
@@ -70,6 +74,7 @@ function Game() {
         if (this.clickCardsList[0].frontImage == this.clickCardsList[1].frontImage) {
             this.match()
         } else {
+            this.sounds.damage.play()
             this.no_match()
         }
     }
@@ -97,13 +102,13 @@ function Game() {
         if (!this.life_points) {
             alert('you lost')
         }
-
     }
 
     this.handleCardClick = function () {
         if ($(this).hasClass('reveal') || $(this).hasClass('match') || self.clickCardsList.length == 2 || this.life_points == 0) {
             return
         }
+        self.sounds.card_flip.play();
         self.reveal(this)
 
     }

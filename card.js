@@ -1,11 +1,7 @@
 
-function Card(frontImage, parentObject) {
-	var self = this
+function Card(frontImage) {
 	this.frontImage = frontImage;
-	this.parent = parentObject;
-	this.revealed = false;
 	this.renderElement = null;
-
 	this.render = function () {
 		var card = $('<div>', {
 			class: 'card'
@@ -23,16 +19,4 @@ function Card(frontImage, parentObject) {
 		this.renderElement = card;
 		return card;
 	}
-
-	this.clicked = function () {
-		if (this.revealed) {
-			console.log('already clicked')
-			return
-		} else {
-			console.log('before click', this.revealed)
-			this.revealed = true
-			console.log('after click', this.revealed)
-		}
-	}
-
 }
