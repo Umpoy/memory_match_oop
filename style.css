@@ -107,6 +107,57 @@ body{
     position: absolute;
 }
 
+/* Modal */
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	vertical-align: middle;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #D0A24C !important;
+	margin-top: 10vh; /* 15% from the top and centered */
+	margin-left: auto;
+	margin-right: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    text-align: center;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.modal-content img {
+  width: 40vw;
+  border: 1px solid black;
+}
+
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* End Modal */
 
 /* ----------- iPhone models 6 & up // Portrait Mode----------- */
 @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) { 

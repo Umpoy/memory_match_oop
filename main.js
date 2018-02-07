@@ -30,8 +30,12 @@ function initializeApplication() {
 
 function View() {
 	this.initialize_game = function () { // starts the game
-		$('.card').remove()
+		$('.card').remove();
+		$('.reset').on('click', () => { //need to move to different location
+			view.initialize_game();
+		})
 		model.life_points = 8000;
+		model.match_counter = 0;
 		model.times_played += 1;
 		$('.life_points').html(this.life_points);
 		$('.times_played').html(this.times_played)
@@ -98,7 +102,34 @@ function Controller() {
 		model.times_clicked++;
 		this.check_accuracy();
 		if (model.match_counter == 9) {
-			alert()
+			this.display_win();
+		}
+	}
+
+	this.display_win = function () {
+		var modal = document.getElementById('modal_victory');
+		modal.style.display = "block";
+		var span = document.getElementsByClassName("close")[0];
+		span.onclick = function () {
+			modal.style.display = "none";
+		}
+		window.onclick = function (event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+	}
+	this.display_defeat = function () {
+		var modal = document.getElementById('modal_defeat');
+		modal.style.display = "block";
+		var span = document.getElementsByClassName("close")[0];
+		span.onclick = function () {
+			modal.style.display = "none";
+		}
+		window.onclick = function (event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
 		}
 	}
 
@@ -112,7 +143,7 @@ function Controller() {
 		$('.life_points').html(model.life_points);
 		this.check_accuracy()
 		if (!model.life_points) {
-			alert('you lost')
+			this.display_defeat();
 		}
 	}
 
