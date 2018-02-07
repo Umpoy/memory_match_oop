@@ -37,8 +37,10 @@ function View() {
 		model.life_points = 8000;
 		model.match_counter = 0;
 		model.times_played += 1;
+		controller.render_life_points();
 		$('.life_points').html(this.life_points);
-		$('.times_played').html(this.times_played)
+		$('.accuracy').html('0%');
+		$('.times_played').html(this.times_played);
 		var images = model.images.concat(model.images);
 		var randomizedArray = [];
 		while (images.length !== 0) {
@@ -140,11 +142,15 @@ function Controller() {
 			$('.reveal').removeClass('reveal')
 			self.cards_clicked_array = []
 		}, 1000)
-		$('.life_points').html(model.life_points);
+		this.render_life_points();
 		this.check_accuracy()
 		if (!model.life_points) {
 			this.display_defeat();
 		}
+	}
+
+	this.render_life_points = function () {
+		$('.life_points').html(model.life_points);
 	}
 
 	this.check_accuracy = function () {

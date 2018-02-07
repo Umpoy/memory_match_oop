@@ -99,40 +99,35 @@ body{
 	text-align: center;
 }
 
-.fa {
-    bottom: 0;
-    left: 0;
-    font-size: 5em !important;
-    color: black;
-    position: absolute;
+.back:hover, .reset:hover {
+	cursor: pointer;
 }
 
 /* Modal */
-/* The Modal (background) */
+
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    display: none;
+    position: fixed; 
+    z-index: 1;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,); /* Fallback color */
-	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%;
+    height: 100%;
+    overflow: auto; 
+    background-color: rgb(0,0,);
+	background-color: rgba(0,0,0,0.4); 
 	vertical-align: middle;
 }
 
-/* Modal Content/Box */
 .modal-content {
     background-color: #D0A24C !important;
-	margin-top: 10vh; /* 15% from the top and centered */
+	margin-top: 10vh; 
 	margin-left: auto;
 	margin-right: auto;
     padding: 20px;
     border: 1px solid #888;
     text-align: center;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 80%;
 }
 
 .modal-content img {
@@ -140,8 +135,6 @@ body{
   border: 1px solid black;
 }
 
-
-/* The Close Button */
 .close {
     color: #aaa;
     float: right;
@@ -298,29 +291,34 @@ and (-webkit-min-device-pixel-ratio: 1) {
 	}
 }
 
-
-
-
-
-
-/* ******************
- @media only screen and (width: 1100px) {
+ @media (min-width: 800px) and (max-width: 1100px) {
 	.wrapper{
 		grid-template-rows: 15vh 80vh 15vh;
 	}
 	.header {
-		grid-column: span 6;
-	}
-	.stats_menu {
-		grid-column: span 6;
-	}
-	#gameArea {
 		grid-column: span 12;
 	}
-	.card img {
-		height: 13vh;
+	.stats_menu {
+		margin-top: 10vh;
+		grid-column: span 2;		
 	}
- } */
+	.stats_menu div {
+		display: inline-block;
+		margin: 3vh;
+	}
+	#gameArea {
+		grid-column: span 10;
+	}
+	.card img {
+		height: 20vh;
+	}
+ }
+ 
+ @media only screen and (max-height: 325px) {
+	 .stats_menu{
+		 font-size: 1.5em;
+	 }
+ }
 
 
 
