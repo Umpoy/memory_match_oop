@@ -24,6 +24,11 @@ function initializeApplication() {
 	view = new View();
 	controller = new Controller();
 	view.initialize_game();
+	$('.reset').on('click', () => {
+		view.initialize_game();
+	})
+	$(window).on('resize', view.change_card_size) // changes .card height and width
+
 }
 
 
@@ -31,18 +36,15 @@ function initializeApplication() {
 function View() {
 	this.initialize_game = function () { // starts the game
 		$('.card').remove();
-		$('.reset').on('click', () => { //need to move to different location
-			view.initialize_game();
-		})
 		model.life_points = 8000;
 		model.match_counter = 0;
 		model.times_played += 1;
 		controller.render_life_points();
-		$('.life_points').html(this.life_points);
+		$('.life_points').html(model.life_points);
 		$('.accuracy').html('0%');
-		$('.times_played').html(this.times_played);
+		$('.times_played').html(model.times_played);
 		var images = model.images.concat(model.images);
-		var randomizedArray = [];
+		let randomizedArray = [];
 		while (images.length !== 0) {
 			var randomIndex = Math.floor(Math.random() * images.length);
 			randomizedArray.push(images[randomIndex]);
@@ -51,13 +53,14 @@ function View() {
 		this.createCards(randomizedArray);
 	}
 	this.createCards = function (randomizedArray) { //Creates and appends cards to game board
-		var cardList = [];
-		for (var i = 0; i < randomizedArray.length; i++) {
-			var newCard = new Card(randomizedArray[i], this);
-			var cardDomElement = newCard.render();
+		const cardList = [];
+		for (let i = 0; i < randomizedArray.length; i++) {
+			let newCard = new Card(randomizedArray[i], this);
+			let cardDomElement = newCard.render();
 			$('#gameArea').append(cardDomElement)
 			cardList.push(newCard)
 		}
+
 		setTimeout(function () {
 			$('.card').addClass('reveal')
 			setTimeout(function () {
@@ -66,7 +69,13 @@ function View() {
 			setTimeout(function () {
 				$('.card').on('click', controller.handleCardClick);
 			}, 0)
-		}, 1000)
+		}, 1000).then(() => this.change_card_size());
+	}
+	this.change_card_size = function () {
+		$(".card").css({
+			"width": $('.back img').width(),
+			"height": $('.back img').height()
+		})
 	}
 } //End of View
 
@@ -80,8 +89,8 @@ function Controller() {
 		}
 		model.sounds.card_flip.play();
 		$(this).addClass('reveal');
-		var image_url = $(this).find('img').attr('src');
-		var card_click = new Card(image_url);
+		let image_url = $(this).find('img').attr('src');
+		let card_click = new Card(image_url);
 		self.cards_clicked_array.push(card_click);
 		if (self.cards_clicked_array.length == 2) {
 			self.check();
@@ -170,8 +179,6 @@ function Model(images, sounds) {
 } //End of Model
 
 function Card(frontImage) {
-	this.frontImage = frontImage;
-	this.renderElement = null;
 	this.render = function () {
 		var card = $('<div>', {
 			class: 'card'
@@ -186,7 +193,7 @@ function Card(frontImage) {
 		front.append(img);
 		back.append($('<img>').attr('src', 'assets/images/card-back.jpg'))
 		card.append(front, back);
-		this.renderElement = card;
+
 		return card;
 	}
 }

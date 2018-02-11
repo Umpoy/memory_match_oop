@@ -47,7 +47,8 @@ body{
 	display: grid;
 	grid-gap: 1px;
 	grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+	grid-template-rows: repeat(3, 1fr);
+	
 }
 .footer {
 	grid-column: span 12;
@@ -63,19 +64,16 @@ body{
 	position: absolute;
 	min-width: 100%;
 	min-height: 100%;
-	background-repeat: no-repeat;
 }
 
 .front{
 	position: absolute;
 	min-width: 100%;
 	min-height: 100%;
-	background-repeat: no-repeat;
 }
 
 .card img {
-	height: 25vh;
-	
+	height: 20vh;
 }
 
 .reveal{
