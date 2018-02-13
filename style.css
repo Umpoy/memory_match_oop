@@ -45,7 +45,7 @@ body{
 #gameArea {
 	grid-column: span 9;
 	display: grid;
-	grid-gap: 5px;
+	grid-gap: auto;
 	grid-template-columns: repeat(6, 1fr);
 	grid-template-rows: repeat(3, 1fr);
 }
@@ -287,6 +287,17 @@ and (-webkit-min-device-pixel-ratio: 1) {
 		height: 13vh;
 	}
 }
+
+/* Desktop */
+
+@media only screen and (max-height: 400px){
+	.stats_menu div{
+		margin: 5vh;
+	}
+}
+
+
+
 /* 
  @media only screen and (max-width: 800px) {
 	.wrapper{

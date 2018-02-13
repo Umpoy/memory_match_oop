@@ -60,6 +60,7 @@ function View() {
 			cardList.push(newCard)
 		}
 		setTimeout(function () {
+			view.change_card_size();
 			$('.card').addClass('reveal')
 			setTimeout(function () {
 				$('.card').removeClass('reveal')
@@ -194,6 +195,7 @@ function Card(frontImage) {
 		front.append(img);
 		back.append($('<img>').attr('src', 'assets/images/card-back.jpg'))
 		card.append(front, back);
+
 		return card;
 	}
 }
