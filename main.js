@@ -28,7 +28,6 @@ function initializeApplication() {
 		view.initialize_game();
 	})
 	$(window).on('resize', view.change_card_size) // changes .card height and width
-
 }
 
 
@@ -60,16 +59,18 @@ function View() {
 			$('#gameArea').append(cardDomElement)
 			cardList.push(newCard)
 		}
-
 		setTimeout(function () {
 			$('.card').addClass('reveal')
 			setTimeout(function () {
 				$('.card').removeClass('reveal')
 			}, 2000);
 			setTimeout(function () {
+				view.change_card_size();
+			}, 2001);
+			setTimeout(function () {
 				$('.card').on('click', controller.handleCardClick);
 			}, 0)
-		}, 1000).then(() => this.change_card_size());
+		}, 1000);
 	}
 	this.change_card_size = function () {
 		$(".card").css({
