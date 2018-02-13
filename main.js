@@ -90,16 +90,14 @@ function Controller() {
 		}
 		model.sounds.card_flip.play();
 		$(this).addClass('reveal');
-		let image_url = $(this).find('img').attr('src');
-		let card_click = new Card(image_url);
-		self.cards_clicked_array.push(card_click);
+		self.cards_clicked_array.push(this);
 		if (self.cards_clicked_array.length == 2) {
 			self.check();
 		}
 	}
 
 	this.check = function () {
-		if (this.cards_clicked_array[0].frontImage == this.cards_clicked_array[1].frontImage) {
+		if ($(controller.cards_clicked_array[0]).find('.front').children('img').attr('src') == $(controller.cards_clicked_array[1]).find('.front').children('img').attr('src')) {
 			this.match();
 		} else {
 			model.sounds.damage.play()
@@ -149,7 +147,8 @@ function Controller() {
 		model.life_points -= 500;
 		model.times_clicked++;
 		setTimeout(function () {
-			$('.reveal').removeClass('reveal')
+			$(controller.cards_clicked_array[0]).removeClass('reveal')
+			$(controller.cards_clicked_array[1]).removeClass('reveal')
 			self.cards_clicked_array = []
 		}, 1000)
 		this.render_life_points();
@@ -180,6 +179,7 @@ function Model(images, sounds) {
 } //End of Model
 
 function Card(frontImage) {
+	this.self = this
 	this.render = function () {
 		var card = $('<div>', {
 			class: 'card'
@@ -194,7 +194,6 @@ function Card(frontImage) {
 		front.append(img);
 		back.append($('<img>').attr('src', 'assets/images/card-back.jpg'))
 		card.append(front, back);
-
 		return card;
 	}
 }
