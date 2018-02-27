@@ -65,9 +65,6 @@ function View() {
 			setTimeout(function () {
 				$('.card').removeClass('reveal')
 			}, 2000);
-			// setTimeout(function () {
-			// 	view.change_card_size();
-			// }, 2001);
 			setTimeout(function () {
 				$('.card').on('click', controller.handleCardClick);
 			}, 0)

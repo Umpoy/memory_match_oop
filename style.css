@@ -39,7 +39,7 @@ body{
 }
 
 .stats_menu div {
-	margin: 9vh;
+	margin: 7vh;
 }
 
 #gameArea {
@@ -48,6 +48,7 @@ body{
 	grid-gap: auto;
 	grid-template-columns: repeat(6, 1fr);
 	grid-template-rows: repeat(3, 1fr);
+	padding-left: 1%;
 }
 .footer {
 	grid-column: span 12;
@@ -296,6 +297,36 @@ and (-webkit-min-device-pixel-ratio: 1) {
 	}
 }
 
+@media only screen and (max-width: 925px) and (min-width: 800px){
+	.wrapper{
+		grid-template-rows: auto 15vh 80vh auto;
+	}
+	.header {
+		grid-column: span 12;
+		
+	}
+	.stats_menu {
+		margin-top: 10vh;
+		grid-column: span 12;		
+	}
+	.stats_menu div {
+		display: inline-block;
+		margin: 3vh;
+		font-size: 2vh;
+	}
+	#gameArea {
+		grid-column: span 12;
+		display: grid;
+		margin-top: 10vh;
+		padding-bottom: 10%;
+	}
+	.footer{
+		grid-column: span 12;
+	}
+	.card img {
+		height: 18vh;
+	}
+}
 
 
 /* 
