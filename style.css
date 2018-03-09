@@ -123,6 +123,7 @@ body{
     background-color: rgb(0,0,0.1);
 	background-color: rgba(0,0,0,0.4); 
 	vertical-align: middle;
+	overflow: auto;
 }
 .modal-content h3{
 	margin-top: 0;
@@ -136,15 +137,15 @@ body{
     padding: 10px;
     border: 1px solid #888;
     text-align: center;
-	width: 50%;
-	height: 50%;
+	width: 90%;
+	
+	max-width: 111vh;
 }
 
 
 
 .modal-content img {
   width: 80%;
-  height: 80%;
   border: 1px solid black;
 }
 
