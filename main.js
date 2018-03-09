@@ -24,10 +24,20 @@ function initializeApplication() {
 	view = new View();
 	controller = new Controller();
 	view.initialize_game();
-	$('.reset').on('click', () => {
-		view.initialize_game();
-	})
+	setTimeout(function () {
+		$('.reset').on('click', reset_board)
+		$('.reset').removeClass('disable')
+	}, 3500)
 	$(window).on('resize', view.change_card_size) // changes .card height and width
+	function reset_board() {
+		view.initialize_game();
+		$(this).off('click');
+		$(this).addClass('disable')
+		setTimeout(() => {
+			$(this).on('click', reset_board);
+			$(this).removeClass('disable')
+		}, 3500);
+	}
 }
 
 
@@ -39,34 +49,36 @@ function View() {
 		model.match_counter = 0;
 		model.times_played += 1;
 		controller.render_life_points();
+		controller.cards_clicked_array = []
 		$('.life_points').html(model.life_points);
 		$('.accuracy').html('0%');
 		$('.times_played').html(model.times_played);
 		var images = model.images.concat(model.images);
-		let randomizedArray = [];
+		let randomized_array = [];
 		while (images.length !== 0) {
-			var randomIndex = Math.floor(Math.random() * images.length);
-			randomizedArray.push(images[randomIndex]);
-			images.splice(randomIndex, 1);
+			var random_index = Math.floor(Math.random() * images.length);
+			randomized_array.push(images[random_index]);
+			images.splice(random_index, 1);
 		}
-		this.createCards(randomizedArray);
+		this.createCards(randomized_array);
 	}
-	this.createCards = function (randomizedArray) { //Creates and appends cards to game board
-		const cardList = [];
-		for (let i = 0; i < randomizedArray.length; i++) {
-			let newCard = new Card(randomizedArray[i], this);
-			let cardDomElement = newCard.render();
-			$('#gameArea').append(cardDomElement)
-			cardList.push(newCard)
+	this.createCards = function (randomized_array) { //Creates and appends cards to game board
+		const card_list = [];
+		for (let i = 0; i < randomized_array.length; i++) {
+			let new_card = new Card(randomized_array[i], this);
+			let card_dom_element = new_card.render();
+			$('#gameArea').append(card_dom_element)
+			card_list.push(new_card)
 		}
 		setTimeout(function () {
 			view.change_card_size();
 			$('.card').addClass('reveal')
+			model.sounds.card_flip.play();
 			setTimeout(function () {
 				$('.card').removeClass('reveal')
 			}, 2000);
 			setTimeout(function () {
-				$('.card').on('click', controller.handleCardClick);
+				$('.card').on('click', controller.handle_card_click);
 			}, 0)
 		}, 1000);
 	}
@@ -82,7 +94,7 @@ function Controller() {
 	let self = this;
 	this.cards_clicked_array = [];
 
-	this.handleCardClick = function () {
+	this.handle_card_click = function () {
 		if ($(this).hasClass('reveal') || $(this).hasClass('match') || self.cards_clicked_array.length == 2 || model.life_points == 0) {
 			return
 		}
@@ -110,7 +122,9 @@ function Controller() {
 		model.times_clicked++;
 		this.check_accuracy();
 		if (model.match_counter == 9) {
-			this.display_win();
+			setTimeout(function () {
+				controller.display_win();
+			}, 500)
 		}
 	}
 
@@ -118,41 +132,37 @@ function Controller() {
 		var modal = document.getElementById('modal_victory');
 		modal.style.display = "block";
 		var span = document.getElementsByClassName("close")[0];
-		span.onclick = function () {
+		modal.onclick = function () {
 			modal.style.display = "none";
 		}
-		window.onclick = function (event) {
-			if (event.target == modal) {
-				modal.style.display = "none";
-			}
-		}
+
 	}
 	this.display_defeat = function () {
 		var modal = document.getElementById('modal_defeat');
 		modal.style.display = "block";
 		var span = document.getElementsByClassName("close")[0];
-		span.onclick = function () {
+		modal.onclick = function () {
 			modal.style.display = "none";
 		}
-		window.onclick = function (event) {
-			if (event.target == modal) {
-				modal.style.display = "none";
-			}
-		}
+
 	}
 
 	this.no_match = function () {
 		model.life_points -= 500;
 		model.times_clicked++;
-		setTimeout(function () {
-			$(controller.cards_clicked_array[0]).removeClass('reveal')
-			$(controller.cards_clicked_array[1]).removeClass('reveal')
-			self.cards_clicked_array = []
-		}, 1000)
+		if (model.life_points > 0) {
+			setTimeout(function () {
+				$(controller.cards_clicked_array[0]).removeClass('reveal')
+				$(controller.cards_clicked_array[1]).removeClass('reveal')
+				self.cards_clicked_array = []
+			}, 1000)
+		}
 		this.render_life_points();
 		this.check_accuracy()
 		if (!model.life_points) {
-			this.display_defeat();
+			setTimeout(function () {
+				controller.display_defeat();
+			}, 1000)
 		}
 	}
 
