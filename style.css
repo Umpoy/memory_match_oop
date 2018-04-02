@@ -166,6 +166,38 @@ body{
 
 /* End Modal */
 
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px)and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+	.wrapper{
+		grid-template-rows: auto 15vh 80vh auto;
+	}
+	.header {
+		grid-column: span 12;
+		
+	}
+	.stats_menu {
+		margin-top: 3vh;
+		grid-column: span 12;		
+	}
+	.stats_menu div {
+		display: inline-block;
+		margin: 3vh;
+		font-size: 3vh;
+	}
+	#gameArea {
+		grid-column: span 12;
+		display: grid;
+		margin-top: 10vh;
+	}
+	.footer{
+		grid-column: span 12;
+	}
+	.card img {
+		height: 13vh;
+	}
+}
+
+
+
 /* ----------- iPhone models 6 & up // Portrait Mode----------- */
 @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) { 
 	.wrapper{
@@ -201,6 +233,10 @@ body{
 /* ----------- iPhone X Portrait Mode----------- */
 
 @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) { 
+	.stats_menu div {
+		font-size: 2.5vh !important;
+	}
+
 	.card img {
 		height: 10vh !important;
 	}
