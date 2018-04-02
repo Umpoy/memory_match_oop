@@ -43,6 +43,7 @@ body{
 
 .stats_menu div {
 	margin: 7vh;
+	text-shadow: 4px 4px 2px rgba(0, 0, 0, 1);
 }
 
 #gameArea {
@@ -268,6 +269,7 @@ and (-webkit-min-device-pixel-ratio: 1) {
 		grid-column: span 12;
 		display: grid;
 		margin-top: 10vh;
+		padding-left: 5%;
 	}
 	.footer{
 		grid-column: span 12;
