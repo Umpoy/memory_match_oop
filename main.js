@@ -45,7 +45,7 @@ function initializeApplication() {
 function View() {
 	this.initialize_game = function () { // starts the game
 		$('.card').remove();
-		model.life_points = 500;
+		model.life_points = 8000;
 		model.match_counter = 0;
 		model.times_played += 1;
 		controller.render_life_points();
