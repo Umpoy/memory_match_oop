@@ -64,11 +64,18 @@ body{
 	transform-style: preserve-3d;
 }
 
+
 .back{
 	position: absolute;
 	min-width: 100%;
 	min-height: 100%;
+	transition: all .2s ease-in-out;
 }
+
+.back:hover{
+	transform: scale(1.1);
+}
+
 
 .front{
 	position: absolute;
@@ -195,6 +202,10 @@ body{
 	.card img {
 		height: 13vh;
 	}
+
+	/* .card img:hover {
+		transform: scale(1.1);
+	} */
 }
 
 
