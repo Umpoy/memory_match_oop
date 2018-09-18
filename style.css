@@ -8,7 +8,7 @@ body{
 
 @font-face {
 	font-family: Belwe;
-	src: url('assets/fonts/Belwe-Bold.ttf')
+	src: url('assets/fonts/Belwe-Bold.ttf');
 }
 
 .wrapper{
@@ -62,8 +62,12 @@ body{
 	position: relative;
 	transition: 1s; 
 	transform-style: preserve-3d;
+	transition: all .2s ease-in-out;
 }
 
+.card:hover {
+	transform: scale(1.1);
+}
 
 .back{
 	position: absolute;
